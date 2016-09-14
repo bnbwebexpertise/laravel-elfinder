@@ -1,14 +1,12 @@
 ## elFinder Package for Laravel 5
 
-### For Laravel 4, please use the [0.2 branch](https://github.com/barryvdh/laravel-elfinder/tree/0.2)!
-
 [![Packagist License](https://poser.pugx.org/barryvdh/laravel-elfinder/license.png)](http://choosealicense.com/licenses/mit/)
 [![Latest Stable Version](https://poser.pugx.org/barryvdh/laravel-elfinder/version.png)](https://packagist.org/packages/barryvdh/laravel-elfinder)
 [![Total Downloads](https://poser.pugx.org/barryvdh/laravel-elfinder/d/total.png)](https://packagist.org/packages/barryvdh/laravel-elfinder)
 
 This packages integrates [elFinder 2.1](https://github.com/Studio-42/elFinder/tree/2.1), 
 by making the php files available with Composer (+autoloading) and the assets with a publish command. It also provides some example views for standalone, tinymce and ckeditor.
-Files are updated from the a seperate [build repository](https://github.com/barryvdh/elfinder-builds)
+Files are updated from the a seperate [build repository](https://github.com/bnbwebexpertise/elfinder-builds)
 
 > Note: Use `php artisan elfinder:publish` instead of the old publish command, for future changes!
 
@@ -16,7 +14,7 @@ Files are updated from the a seperate [build repository](https://github.com/barr
 
 Require this package with Composer
     
-    composer require barryvdh/laravel-elfinder
+    composer require bnbwebexpertise/laravel-elfinder
     
 Add the ServiceProvider to the providers array in app/config/app.php
 
@@ -63,7 +61,7 @@ You can add an array to provide extra options, like the URL, alias etc. [Look he
 
 ### Using Glide for images
 
-See [elfinder-flysystem-driver](https://github.com/barryvdh/elfinder-flysystem-driver) for [Glide](http://glide.thephpleague.com/) usage. A basic example with a custom Laravel disk and Glide would be:
+See [elfinder-flysystem-driver](https://github.com/bnbwebexpertise/elfinder-flysystem-driver) for [Glide](http://glide.thephpleague.com/) usage. A basic example with a custom Laravel disk and Glide would be:
 
 1. Add the disk to your apps config/filesystems disks:
 
