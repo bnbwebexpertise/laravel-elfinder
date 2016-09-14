@@ -1,7 +1,7 @@
 {
-    "name": "barryvdh/laravel-elfinder",
+    "name": "bnbwebexpertise/laravel-elfinder",
     "keywords": ["laravel", "elfinder", "tinymce", "filebrowser"],
-    "description": "A Laravel Package to integrate elFinder 2",
+    "description": "A Laravel Package to integrate elFinder 2 forked from original barryvdh/laravel-elfinder",
     "license": "MIT",
     "authors": [
         {
