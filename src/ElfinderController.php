@@ -87,11 +87,11 @@ class ElfinderController extends Controller
         $this->addUserWorkingPath($roots);
 
         if (empty( $roots )) {
-            $dirs = (array) $this->app['config']->get('elfinder.dir', []);
+            $dirs = (array)$this->app['config']->get('elfinder.dir', []);
 
             //$this->addUserWorkingPath($dirs);
 
-            foreach ($dirs as $dir) {
+            foreach ( $dirs as $dir ) {
                 $roots[] = [
                     'driver'        => 'LocalFileSystem', // driver for accessing file system (REQUIRED)
                     'path'          => public_path($dir), // path to files (REQUIRED)
@@ -100,8 +100,8 @@ class ElfinderController extends Controller
                 ];
             }
 
-            $disks = (array) $this->app['config']->get('elfinder.disks', []);
-            foreach ($disks as $key => $root) {
+            $disks = (array)$this->app['config']->get('elfinder.disks', []);
+            foreach ( $disks as $key => $root ) {
                 if (is_string($root)) {
                     $key  = $root;
                     $root = [];
@@ -126,7 +126,7 @@ class ElfinderController extends Controller
         }
 
         $rootOptions = $this->app->config->get('elfinder.root_options', []);
-        foreach ($roots as $key => $root) {
+        foreach ( $roots as $key => $root ) {
             $roots[$key] = array_merge($rootOptions, $root);
         }
 
@@ -159,28 +159,33 @@ class ElfinderController extends Controller
     protected function addUserWorkingPath(&$dirs)
     {
         if (Auth::user()) {
-            $path = $this->getWorkingPath(Auth::user()->getKey());
-
-            $dirs[] = [
-                'driver'        => 'LocalFileSystem',
-                'path'          => $path,
-                //'startPath'  => 'users/9/',
-                'URL'           => env('APP_URL', 'http://localhost') . '/' . $path,
-                'alias'         => $path, // set parent to 'LocalVolumes'
-                //'tmbCrop'    => false,
-                'accessControl' => 'access',
-                'attributes'    => [
-                    [
-                        'pattern' => '/^(.*\/)?\..*/',
-                        'read'    => false,
-                        'write'   => false,
-                        'locked'  => true,
-                        'hidden'  => true,
-                    ]
-                ]
-            ];
-            //$dirs[] = $this->getWorkingPath(Auth::user()->getKey());
+            $user_id = Auth::user()->getKey();
+        } else {
+            $user_id = 'guest_' . \Session::getId();
         }
+
+
+        $path = $this->getWorkingPath($user_id);
+
+        $dirs[] = [
+            'driver'        => 'LocalFileSystem',
+            'path'          => $path,
+            //'startPath'  => 'users/9/',
+            'URL'           => env('APP_URL', 'http://localhost') . '/' . $path,
+            'alias'         => $path, // set parent to 'LocalVolumes'
+            //'tmbCrop'    => false,
+            'accessControl' => 'access',
+            'attributes'    => [
+                [
+                    'pattern' => '/^(.*\/)?\..*/',
+                    'read'    => false,
+                    'write'   => false,
+                    'locked'  => true,
+                    'hidden'  => true,
+                ]
+            ]
+        ];
+        //$dirs[] = $this->getWorkingPath(Auth::user()->getKey());
     }
 
 
